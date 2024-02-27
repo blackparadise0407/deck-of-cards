@@ -461,9 +461,9 @@ var Deck = (function () {
   }
 
   var ___fontSize;
-  var cards_per_player = 3;
-  var radius = 2;
-  var whole_circle = 360;
+  var CARD_PER_PLAYERS = 3;
+  var RADIUS = 2;
+  var WHOLE_CIRCLE = 360;
 
   var cao = {
     deck: function deck(_deck) {
@@ -482,26 +482,22 @@ var Deck = (function () {
         if (sessionStorage.getItem("__roomId")) {
           socket.emit("new-game", sessionStorage.getItem("__roomId"));
         }
-        _deck.queue(function (next) {
-          _deck.cards.forEach(function (card) {
-            setTimeout(function () {
-              card.setSide("back");
-              card.onFlip = undefined;
-            }, 0);
-          });
-          next();
+        _deck.cards.forEach(function (card) {
+          card.setSide("back");
+          card.onFlip = undefined;
         });
+
         var player_count = players.length > 0 ? players.length : 1;
         return function (next) {
           var cards = _deck.cards;
           var len = cards.length;
           ___fontSize = fontSize();
 
-          cards.slice(-player_count * cards_per_player).reverse().forEach(function (card, i) {
+          cards.slice(-player_count * CARD_PER_PLAYERS).reverse().forEach(function (card, i) {
             var nextPlayer = players[i % player_count];
             var nextPlayerId = nextPlayer ? nextPlayer.id : null;
             card.cao(player_count, nextPlayerId)(i, len, function (i) {
-              var lastTurn = i >= player_count * (cards_per_player - 1);
+              var lastTurn = i >= player_count * (CARD_PER_PLAYERS - 1);
               card.setSide(lastTurn ? "back" : "front");
               if (nextPlayerId) {
                 socket.emit("card-deal", {
@@ -511,7 +507,7 @@ var Deck = (function () {
                 });
               }
 
-              if (i === player_count * cards_per_player - 1) {
+              if (i === player_count * CARD_PER_PLAYERS - 1) {
                 next();
               }
             });
@@ -526,9 +522,9 @@ var Deck = (function () {
         return function (i, len, cb) {
           var delay = i * 250;
           var turn = Math.floor(i / player_count) + 1;
-          var deg = Math.floor(whole_circle / player_count);
-          var x = radius * Math.cos(deg * (i % player_count) * Math.PI / 180);
-          var y = radius * Math.sin(deg * (i % player_count) * Math.PI / 180);
+          var deg = Math.floor(WHOLE_CIRCLE / player_count);
+          var x = RADIUS * Math.cos(deg * (i % player_count) * Math.PI / 180);
+          var y = RADIUS * Math.sin(deg * (i % player_count) * Math.PI / 180);
           _card2.animateTo({
             delay: delay,
             duration: 250,
@@ -952,22 +948,28 @@ var Deck = (function () {
    * @param {string} roomId
    */
   function enterMultiDialog(roomId) {
-    dialog("Tên bạn là zì", function (content, close) {
-      var input = document.createElement("input");
-      input.type = "text";
-      input.placeholder = "Your name";
-      content.appendChild(input);
-      var button = document.createElement("button");
-      button.textContent = "Enter";
-      button.className = "button";
+    dialog("Tên bạn là zì", function ($content, close) {
+      var $input = document.createElement("input");
+      $input.type = "text";
+      $input.style.width = "100%";
+      $input.placeholder = "Your name";
+      $content.appendChild($input);
+      var $buttonContainer = document.createElement("div");
+      $buttonContainer.style.cssText = "display: flex; gap: 0.5rem; margin-top: 0.5rem;";
+      $content.appendChild($input);
+      $content.appendChild($buttonContainer);
+      var $button = document.createElement("button");
+      $button.textContent = "Enter";
+      $button.style.marginTop = "0.5rem";
+      $button.className = "button";
       var uid = (Date.now() + Math.floor(Math.random() * 100000)).toString(16);
-      button.onclick = function () {
-        if (input.value) {
+      $button.onclick = function () {
+        if ($input.value) {
           _socket.emit("join-room", {
             roomId: roomId || uid,
             player: {
               id: sessionStorage.getItem("__uid"),
-              name: input.value
+              name: $input.value
             }
           });
           sessionStorage.setItem("__roomId", roomId || uid);
@@ -975,15 +977,16 @@ var Deck = (function () {
         }
       };
       if (!roomId) {
-        var clipboardButton = document.createElement("button");
-        clipboardButton.className = "button";
-        clipboardButton.textContent = "Copy link";
-        clipboardButton.onclick = function () {
+        var $clipboardButton = document.createElement("button");
+        $clipboardButton.className = "button";
+        $clipboardButton.style.marginTop = "0.5rem";
+        $clipboardButton.textContent = "Copy link";
+        $clipboardButton.onclick = function () {
           navigator.clipboard.writeText(location.origin + ('/cao/' + uid));
         };
-        content.appendChild(clipboardButton);
+        $buttonContainer.appendChild($clipboardButton);
       }
-      content.appendChild(button);
+      $buttonContainer.appendChild($button);
     });
   }
 

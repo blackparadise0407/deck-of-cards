@@ -8,7 +8,6 @@ var translate = Deck.translate;
 
 var $container = document.getElementById("container");
 var $topbar = document.getElementById("topbar");
-var $players = document.querySelector("#players>ul");
 
 var $shuffle = document.createElement("button");
 var $multiplayer = document.createElement("button");
@@ -51,7 +50,7 @@ $cao.addEventListener("click", function () {
   deck.cao(window.players)();
 });
 $multiplayer.addEventListener("click", function () {
-  Deck.Utils.enterMultiDialog(sessionStorage.get("__roomId"));
+  Deck.Utils.enterMultiDialog(sessionStorage.getItem("__roomId"));
 });
 
 deck.mount($container);
@@ -102,12 +101,6 @@ function printMessage(text) {
       document.body.removeChild($message);
     });
 }
-
-socket.on("player-join", (players) => {
-  window.players = players;
-  const html = players.map(({ name }) => `<li><p>${name}</p></li>`).join("");
-  $players.innerHTML = html;
-});
 
 socket.on("flip-card", ({ pos }) => {
   deck.cards[pos].setSide("front");
