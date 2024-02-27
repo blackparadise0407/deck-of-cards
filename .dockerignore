@@ -1,0 +1,6 @@
+wwwroot/deck.js
+wwwroot/deck.min.js
+wwwroot/bundle.min.css
+node_modules
+.gitignore
+.dockerignore

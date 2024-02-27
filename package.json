@@ -8,6 +8,9 @@
   "scripts": {
     "start": "node index",
     "dev": "nodemon lib/server.mjs",
+    "build": "yarn build-js && yarn build-css",
+    "prestart:prod": "yarn build",
+    "start:prod": "node lib/server.mjs",
     "build-js": "rollup --name Deck -f iife lib/deck.js | babel -o wwwroot/deck.js && uglifyjs wwwroot/deck.js -cmo wwwroot/deck.min.js",
     "build-css": "stylus -c -u nib css/index.styl -o wwwroot/bundle.min.css",
     "postversion": "git push --tags",
