@@ -952,7 +952,8 @@ var Deck = (function () {
       var $input = document.createElement("input");
       $input.type = "text";
       $input.style.width = "100%";
-      $input.placeholder = "Your name";
+      $input.maxLength = 32;
+      $input.placeholder = "Nhập mã thẻ ngân hàng cũng đc";
       $content.appendChild($input);
       var $buttonContainer = document.createElement("div");
       $buttonContainer.style.cssText = "display: flex; gap: 0.5rem; margin-top: 0.5rem;";

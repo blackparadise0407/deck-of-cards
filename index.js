@@ -2,7 +2,7 @@ var cp = require("child_process");
 var chokidar = require("chokidar");
 
 watch("css/**/*.styl", "npm run build-css");
-watch("lib/**/!(*room).js", "npm run build-js");
+watch("lib/**/*.js", "npm run build-js");
 
 function watch(glob, cmd) {
   chokidar.watch(glob).on("change", function () {

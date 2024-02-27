@@ -53,7 +53,8 @@ html
             (2 * Math.sin((deg * i * Math.PI) / 180)) * 100 * fontSize / 16 - 80;
           const $el = document.createElement("div");
           $el.textContent = name;
-          $el.style.cssText = `position: absolute; top:0; left: 0; transform: translate(${x}px, ${y}px);`;
+          $el.className = "player";
+          $el.style.transform = `translate(${x}px, ${y}px)`;
           $container.appendChild($el);
         });
       }
