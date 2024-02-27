@@ -51,7 +51,7 @@ $cao.addEventListener("click", function () {
   deck.cao(window.players)();
 });
 $multiplayer.addEventListener("click", function () {
-  Deck.Utils.enterMultiDialog();
+  Deck.Utils.enterMultiDialog(sessionStorage.get("__roomId"));
 });
 
 deck.mount($container);
