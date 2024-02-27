@@ -12,7 +12,7 @@ body {
 body {
   background-color: #45a173;
   color: #333;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -76,8 +76,8 @@ body {
   background-color: #fff;
   -webkit-border-radius: 4px;
   border-radius: 4px;
-  -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.15);
-  box-shadow: 0 1px 1px rgba(0,0,0,0.15);
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
   cursor: default;
 }
 .card:before,
@@ -86,7 +86,7 @@ body {
   font-size: 0.7rem;
   text-align: center;
   line-height: 0.7rem;
-  font-family: 'Ubuntu Condensed', sans-serif;
+  font-family: "Ubuntu Condensed", sans-serif;
   white-space: pre-line;
   width: 0.55rem;
   letter-spacing: -0.1rem;
@@ -201,169 +201,169 @@ body {
   content: "K";
 }
 .card.spades.rank1 .face {
-  background-image: url("faces/0_1.svg");
+  background-image: url("faces/0_1.png");
 }
 .card.spades.rank2 .face {
-  background-image: url("faces/0_2.svg");
+  background-image: url("faces/0_2.png");
 }
 .card.spades.rank3 .face {
-  background-image: url("faces/0_3.svg");
+  background-image: url("faces/0_3.png");
 }
 .card.spades.rank4 .face {
-  background-image: url("faces/0_4.svg");
+  background-image: url("faces/0_4.png");
 }
 .card.spades.rank5 .face {
-  background-image: url("faces/0_5.svg");
+  background-image: url("faces/0_5.png");
 }
 .card.spades.rank6 .face {
-  background-image: url("faces/0_6.svg");
+  background-image: url("faces/0_6.png");
 }
 .card.spades.rank7 .face {
-  background-image: url("faces/0_7.svg");
+  background-image: url("faces/0_7.png");
 }
 .card.spades.rank8 .face {
-  background-image: url("faces/0_8.svg");
+  background-image: url("faces/0_8.png");
 }
 .card.spades.rank9 .face {
-  background-image: url("faces/0_9.svg");
+  background-image: url("faces/0_9.png");
 }
 .card.spades.rank10 .face {
-  background-image: url("faces/0_10.svg");
+  background-image: url("faces/0_10.png");
 }
 .card.spades.rank11 .face {
-  background-image: url("faces/0_11.svg");
+  background-image: url("faces/0_11.png");
 }
 .card.spades.rank12 .face {
-  background-image: url("faces/0_12.svg");
+  background-image: url("faces/0_12.png");
 }
 .card.spades.rank13 .face {
-  background-image: url("faces/0_13.svg");
+  background-image: url("faces/0_13.png");
 }
 .card.hearts.rank1 .face {
-  background-image: url("faces/1_1.svg");
+  background-image: url("faces/1_1.png");
 }
 .card.hearts.rank2 .face {
-  background-image: url("faces/1_2.svg");
+  background-image: url("faces/1_2.png");
 }
 .card.hearts.rank3 .face {
-  background-image: url("faces/1_3.svg");
+  background-image: url("faces/1_3.png");
 }
 .card.hearts.rank4 .face {
-  background-image: url("faces/1_4.svg");
+  background-image: url("faces/1_4.png");
 }
 .card.hearts.rank5 .face {
-  background-image: url("faces/1_5.svg");
+  background-image: url("faces/1_5.png");
 }
 .card.hearts.rank6 .face {
-  background-image: url("faces/1_6.svg");
+  background-image: url("faces/1_6.png");
 }
 .card.hearts.rank7 .face {
-  background-image: url("faces/1_7.svg");
+  background-image: url("faces/1_7.png");
 }
 .card.hearts.rank8 .face {
-  background-image: url("faces/1_8.svg");
+  background-image: url("faces/1_8.png");
 }
 .card.hearts.rank9 .face {
-  background-image: url("faces/1_9.svg");
+  background-image: url("faces/1_9.png");
 }
 .card.hearts.rank10 .face {
-  background-image: url("faces/1_10.svg");
+  background-image: url("faces/1_10.png");
 }
 .card.hearts.rank11 .face {
-  background-image: url("faces/1_11.svg");
+  background-image: url("faces/1_11.png");
 }
 .card.hearts.rank12 .face {
-  background-image: url("faces/1_12.svg");
+  background-image: url("faces/1_12.png");
 }
 .card.hearts.rank13 .face {
-  background-image: url("faces/1_13.svg");
+  background-image: url("faces/1_13.png");
 }
 .card.clubs.rank1 .face {
-  background-image: url("faces/2_1.svg");
+  background-image: url("faces/2_1.png");
 }
 .card.clubs.rank2 .face {
-  background-image: url("faces/2_2.svg");
+  background-image: url("faces/2_2.png");
 }
 .card.clubs.rank3 .face {
-  background-image: url("faces/2_3.svg");
+  background-image: url("faces/2_3.png");
 }
 .card.clubs.rank4 .face {
-  background-image: url("faces/2_4.svg");
+  background-image: url("faces/2_4.png");
 }
 .card.clubs.rank5 .face {
-  background-image: url("faces/2_5.svg");
+  background-image: url("faces/2_5.png");
 }
 .card.clubs.rank6 .face {
-  background-image: url("faces/2_6.svg");
+  background-image: url("faces/2_6.png");
 }
 .card.clubs.rank7 .face {
-  background-image: url("faces/2_7.svg");
+  background-image: url("faces/2_7.png");
 }
 .card.clubs.rank8 .face {
-  background-image: url("faces/2_8.svg");
+  background-image: url("faces/2_8.png");
 }
 .card.clubs.rank9 .face {
-  background-image: url("faces/2_9.svg");
+  background-image: url("faces/2_9.png");
 }
 .card.clubs.rank10 .face {
-  background-image: url("faces/2_10.svg");
+  background-image: url("faces/2_10.png");
 }
 .card.clubs.rank11 .face {
-  background-image: url("faces/2_11.svg");
+  background-image: url("faces/2_11.png");
 }
 .card.clubs.rank12 .face {
-  background-image: url("faces/2_12.svg");
+  background-image: url("faces/2_12.png");
 }
 .card.clubs.rank13 .face {
-  background-image: url("faces/2_13.svg");
+  background-image: url("faces/2_13.png");
 }
 .card.diamonds.rank1 .face {
-  background-image: url("faces/3_1.svg");
+  background-image: url("faces/3_1.png");
 }
 .card.diamonds.rank2 .face {
-  background-image: url("faces/3_2.svg");
+  background-image: url("faces/3_2.png");
 }
 .card.diamonds.rank3 .face {
-  background-image: url("faces/3_3.svg");
+  background-image: url("faces/3_3.png");
 }
 .card.diamonds.rank4 .face {
-  background-image: url("faces/3_4.svg");
+  background-image: url("faces/3_4.png");
 }
 .card.diamonds.rank5 .face {
-  background-image: url("faces/3_5.svg");
+  background-image: url("faces/3_5.png");
 }
 .card.diamonds.rank6 .face {
-  background-image: url("faces/3_6.svg");
+  background-image: url("faces/3_6.png");
 }
 .card.diamonds.rank7 .face {
-  background-image: url("faces/3_7.svg");
+  background-image: url("faces/3_7.png");
 }
 .card.diamonds.rank8 .face {
-  background-image: url("faces/3_8.svg");
+  background-image: url("faces/3_8.png");
 }
 .card.diamonds.rank9 .face {
-  background-image: url("faces/3_9.svg");
+  background-image: url("faces/3_9.png");
 }
 .card.diamonds.rank10 .face {
-  background-image: url("faces/3_10.svg");
+  background-image: url("faces/3_10.png");
 }
 .card.diamonds.rank11 .face {
-  background-image: url("faces/3_11.svg");
+  background-image: url("faces/3_11.png");
 }
 .card.diamonds.rank12 .face {
-  background-image: url("faces/3_12.svg");
+  background-image: url("faces/3_12.png");
 }
 .card.diamonds.rank13 .face {
-  background-image: url("faces/3_13.svg");
+  background-image: url("faces/3_13.png");
 }
 .card.joker.rank1 .face {
-  background-image: url("faces/4_1.svg");
+  background-image: url("faces/4_1.png");
 }
 .card.joker.rank2 .face {
-  background-image: url("faces/4_2.svg");
+  background-image: url("faces/4_2.png");
 }
 .card.joker.rank3 .face {
-  background-image: url("faces/4_3.svg");
+  background-image: url("faces/4_3.png");
 }
 @media (max-width: 540px) {
   #topbar {

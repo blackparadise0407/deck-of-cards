@@ -154,7 +154,7 @@ var Deck = (function () {
   var maxZ = 52;
 
   function _card(i) {
-    var transform = prefix('transform');
+    var transform = prefix("transform");
 
     // calculate rank/suit, etc..
     var rank = i % 13 + 1;
@@ -162,9 +162,9 @@ var Deck = (function () {
     var z = (52 - i) / 4;
 
     // create elements
-    var $el = createElement('div');
-    var $face = createElement('div');
-    var $back = createElement('div');
+    var $el = createElement("div");
+    var $face = createElement("div");
+    var $back = createElement("div");
 
     // states
     var isDraggable = false;
@@ -177,11 +177,11 @@ var Deck = (function () {
     var module;
 
     // add classes
-    $face.classList.add('face');
-    $back.classList.add('back');
+    $face.classList.add("face");
+    $back.classList.add("back");
 
     // add default transform
-    $el.style[transform] = translate(-z + 'px', -z + 'px');
+    $el.style[transform] = translate(-z + "px", -z + "px");
 
     // add default values
     self.x = -z;
@@ -190,11 +190,11 @@ var Deck = (function () {
     self.rot = 0;
 
     // set default side to back
-    self.setSide('back');
+    self.setSide("back");
 
     // add drag/click listeners
-    addListener($el, 'mousedown', onMousedown);
-    addListener($el, 'touchstart', onMousedown);
+    addListener($el, "mousedown", onMousedown);
+    addListener($el, "touchstart", onMousedown);
 
     // load modules
     for (module in modules) {
@@ -224,7 +224,7 @@ var Deck = (function () {
         startRot = self.rot || 0;
         onStart && onStart();
       }).progress(function (t) {
-        var et = ease[ease$$ || 'cubicInOut'](t);
+        var et = ease[ease$$ || "cubicInOut"](t);
 
         diffX = x - startX;
         diffY = y - startY;
@@ -236,7 +236,7 @@ var Deck = (function () {
         self.y = startY + diffY * et;
         self.rot = startRot + diffRot * et;
 
-        $el.style[transform] = translate(self.x + 'px', self.y + 'px') + (diffRot ? 'rotate(' + self.rot + 'deg)' : '');
+        $el.style[transform] = translate(self.x + "px", self.y + "px") + (diffRot ? "rotate(" + self.rot + "deg)" : "");
       }).end(function () {
         onComplete && onComplete();
       });
@@ -245,7 +245,7 @@ var Deck = (function () {
     // set rank & suit
     self.setRankSuit = function (rank, suit) {
       var suitName = SuitName(suit);
-      $el.setAttribute('class', 'card ' + suitName + ' rank' + rank);
+      $el.setAttribute("class", "card " + suitName + " rank" + rank);
     };
 
     self.setRankSuit(rank, suit);
@@ -257,7 +257,7 @@ var Deck = (function () {
         return;
       }
       isDraggable = true;
-      $el.style.cursor = 'move';
+      $el.style.cursor = "move";
     };
 
     self.enableFlipping = function () {
@@ -282,7 +282,7 @@ var Deck = (function () {
         return;
       }
       isDraggable = false;
-      $el.style.cursor = '';
+      $el.style.cursor = "";
     };
 
     return self;
@@ -300,16 +300,16 @@ var Deck = (function () {
       e.preventDefault();
 
       // get start coordinates and start listening window events
-      if (e.type === 'mousedown') {
+      if (e.type === "mousedown") {
         startPos.x = pos.x = e.clientX;
         startPos.y = pos.y = e.clientY;
-        addListener(window, 'mousemove', onMousemove);
-        addListener(window, 'mouseup', onMouseup);
+        addListener(window, "mousemove", onMousemove);
+        addListener(window, "mouseup", onMouseup);
       } else {
         startPos.x = pos.x = e.touches[0].clientX;
         startPos.y = pos.y = e.touches[0].clientY;
-        addListener(window, 'touchmove', onMousemove);
-        addListener(window, 'touchend', onMouseup);
+        addListener(window, "touchmove", onMousemove);
+        addListener(window, "touchend", onMouseup);
       }
 
       if (!isDraggable) {
@@ -318,7 +318,7 @@ var Deck = (function () {
       }
 
       // move card
-      $el.style[transform] = translate(self.x + 'px', self.y + 'px') + (self.rot ? ' rotate(' + self.rot + 'deg)' : '');
+      $el.style[transform] = translate(self.x + "px", self.y + "px") + (self.rot ? " rotate(" + self.rot + "deg)" : "");
       $el.style.zIndex = maxZ++;
 
       function onMousemove(e) {
@@ -326,7 +326,7 @@ var Deck = (function () {
           // is not draggable, do nothing
           return;
         }
-        if (e.type === 'mousemove') {
+        if (e.type === "mousemove") {
           pos.x = e.clientX;
           pos.y = e.clientY;
         } else {
@@ -335,20 +335,20 @@ var Deck = (function () {
         }
 
         // move card
-        $el.style[transform] = translate(Math.round(self.x + pos.x - startPos.x) + 'px', Math.round(self.y + pos.y - startPos.y) + 'px') + (self.rot ? ' rotate(' + self.rot + 'deg)' : '');
+        $el.style[transform] = translate(Math.round(self.x + pos.x - startPos.x) + "px", Math.round(self.y + pos.y - startPos.y) + "px") + (self.rot ? " rotate(" + self.rot + "deg)" : "");
       }
 
       function onMouseup(e) {
         if (isFlippable && Date.now() - starttime < 200) {
           // flip sides
-          self.setSide(self.side === 'front' ? 'back' : 'front');
+          self.setSide(self.side === "front" ? "back" : "front");
         }
-        if (e.type === 'mouseup') {
-          removeListener(window, 'mousemove', onMousemove);
-          removeListener(window, 'mouseup', onMouseup);
+        if (e.type === "mouseup") {
+          removeListener(window, "mousemove", onMousemove);
+          removeListener(window, "mouseup", onMouseup);
         } else {
-          removeListener(window, 'touchmove', onMousemove);
-          removeListener(window, 'touchend', onMouseup);
+          removeListener(window, "touchmove", onMousemove);
+          removeListener(window, "touchend", onMouseup);
         }
         if (!isDraggable) {
           // is not draggable, do nothing
@@ -374,29 +374,36 @@ var Deck = (function () {
       self.$root = null;
     }
 
+    /**
+     *
+     * @param {"front" | "back"} newSide
+     * @param {boolean} emit
+     */
     function setSide(newSide) {
-      // flip sides
-      if (newSide === 'front') {
-        if (self.side === 'back') {
+      if (self.onFlip && newSide !== self.side) {
+        self.onFlip(newSide);
+      }
+      if (newSide === "front") {
+        if (self.side === "back") {
           $el.removeChild($back);
         }
-        self.side = 'front';
+        self.side = "front";
         $el.appendChild($face);
         self.setRankSuit(self.rank, self.suit);
       } else {
-        if (self.side === 'front') {
+        if (self.side === "front") {
           $el.removeChild($face);
         }
-        self.side = 'back';
+        self.side = "back";
         $el.appendChild($back);
-        $el.setAttribute('class', 'card');
+        $el.setAttribute("class", "card");
       }
     }
   }
 
   function SuitName(suit) {
     // return suit name from suit value
-    return suit === 0 ? 'spades' : suit === 1 ? 'hearts' : suit === 2 ? 'clubs' : suit === 3 ? 'diamonds' : 'joker';
+    return suit === 0 ? "spades" : suit === 1 ? "hearts" : suit === 2 ? "clubs" : suit === 3 ? "diamonds" : "joker";
   }
 
   function addListener(target, name, listener) {
@@ -454,57 +461,97 @@ var Deck = (function () {
   }
 
   var ___fontSize;
-  var players = 10;
   var cards_per_player = 3;
   var radius = 2;
   var whole_circle = 360;
 
   var cao = {
     deck: function deck(_deck) {
-      _deck.cao = _deck.queued(cao);
+      _deck.cao = function (players) {
+        return _deck.queued(cao(players));
+      };
 
-      function cao(next) {
-        var cards = _deck.cards;
-        var len = cards.length;
+      /**
+       *
+       * @param {Array<Player>} players
+       * @returns
+       */
+      function cao() {
+        var players = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
 
-        ___fontSize = fontSize();
-
-        cards.slice(-players * cards_per_player).reverse().forEach(function (card, i) {
-          card.cao(i, len, function (i) {
-            var lastTurn = i >= players * (cards_per_player - 1);
-            card.setSide(lastTurn ? "back" : "front");
-            if (i === players * cards_per_player - 1) {
-              next();
-            }
+        if (sessionStorage.getItem("__roomId")) {
+          socket.emit("new-game", sessionStorage.getItem("__roomId"));
+        }
+        _deck.queue(function (next) {
+          _deck.cards.forEach(function (card) {
+            setTimeout(function () {
+              card.setSide("back");
+              card.onFlip = undefined;
+            }, 0);
           });
+          next();
         });
+        var player_count = players.length > 0 ? players.length : 1;
+        return function (next) {
+          var cards = _deck.cards;
+          var len = cards.length;
+          ___fontSize = fontSize();
+
+          cards.slice(-player_count * cards_per_player).reverse().forEach(function (card, i) {
+            var nextPlayer = players[i % player_count];
+            var nextPlayerId = nextPlayer ? nextPlayer.id : null;
+            card.cao(player_count, nextPlayerId)(i, len, function (i) {
+              var lastTurn = i >= player_count * (cards_per_player - 1);
+              card.setSide(lastTurn ? "back" : "front");
+              if (nextPlayerId) {
+                socket.emit("card-deal", {
+                  roomId: sessionStorage.getItem("__roomId"),
+                  card: card,
+                  playerId: nextPlayerId
+                });
+              }
+
+              if (i === player_count * cards_per_player - 1) {
+                next();
+              }
+            });
+          });
+        };
       }
     },
     card: function card(_card2) {
       var $el = _card2.$el;
 
-      _card2.cao = function (i, len, cb) {
-        var delay = i * 250;
-        var turn = Math.floor(i / players) + 1;
-        var deg = Math.floor(whole_circle / players);
-        var x = radius * Math.cos(deg * (i % players) * Math.PI / 180);
-        var y = radius * Math.sin(deg * (i % players) * Math.PI / 180);
+      _card2.cao = function (player_count, nextPlayerId) {
+        return function (i, len, cb) {
+          var delay = i * 250;
+          var turn = Math.floor(i / player_count) + 1;
+          var deg = Math.floor(whole_circle / player_count);
+          var x = radius * Math.cos(deg * (i % player_count) * Math.PI / 180);
+          var y = radius * Math.sin(deg * (i % player_count) * Math.PI / 180);
+          _card2.animateTo({
+            delay: delay,
+            duration: 250,
 
-        _card2.animateTo({
-          delay: delay,
-          duration: 250,
+            x: Math.round((x + turn * 0.2) * 120 * ___fontSize / 16),
+            y: Math.round(y * 100 * ___fontSize / 16),
+            rot: 0,
 
-          x: Math.round((x + turn * 0.2) * 120 * ___fontSize / 16),
-          y: Math.round(y * 100 * ___fontSize / 16),
-          rot: 0,
-
-          onStart: function onStart() {
-            $el.style.zIndex = len - 1 + i;
-          },
-          onComplete: function onComplete() {
-            cb(i);
+            onStart: function onStart() {
+              $el.style.zIndex = len - 1 + i;
+            },
+            onComplete: function onComplete() {
+              cb(i);
+            }
+          });
+          if (sessionStorage.getItem("__uid") === nextPlayerId) {
+            _card2.onFlip = function () {
+              var payload = JSON.parse(JSON.stringify(_card2));
+              payload.roomId = sessionStorage.getItem("__roomId");
+              socket.emit("flip-card", payload);
+            };
           }
-        });
+        };
       };
     }
   };
@@ -877,6 +924,74 @@ var Deck = (function () {
     }
   };
 
+  var MicroModal = window.MicroModal;
+  var _socket = window.socket;
+
+  /**
+   *
+   * @param {string} title
+   * @param {(content: HTMLElement, close: () => void) => void | undefined} render
+   * @returns {void}
+   */
+  function dialog(title, render) {
+    var modal = document.getElementById("modal");
+    var modalContent = modal.querySelector("#modal-content");
+    var modalTitle = modal.querySelector("#modal-title");
+    modalTitle.textContent = title;
+    modalContent.innerHTML = "";
+    if (render) {
+      render(modalContent, function () {
+        MicroModal.close("modal");
+      });
+    }
+    MicroModal.show("modal");
+  }
+
+  /**
+   *
+   * @param {string} roomId
+   */
+  function enterMultiDialog(roomId) {
+    dialog("Tên bạn là zì", function (content, close) {
+      var input = document.createElement("input");
+      input.type = "text";
+      input.placeholder = "Your name";
+      content.appendChild(input);
+      var button = document.createElement("button");
+      button.textContent = "Enter";
+      button.className = "button";
+      var uid = (Date.now() + Math.floor(Math.random() * 100000)).toString(16);
+      button.onclick = function () {
+        if (input.value) {
+          _socket.emit("join-room", {
+            roomId: roomId || uid,
+            player: {
+              id: sessionStorage.getItem("__uid"),
+              name: input.value
+            }
+          });
+          sessionStorage.setItem("__roomId", roomId || uid);
+          close();
+        }
+      };
+      if (!roomId) {
+        var clipboardButton = document.createElement("button");
+        clipboardButton.className = "button";
+        clipboardButton.textContent = "Copy link";
+        clipboardButton.onclick = function () {
+          navigator.clipboard.writeText(location.origin + ('/cao/' + uid));
+        };
+        content.appendChild(clipboardButton);
+      }
+      content.appendChild(button);
+    });
+  }
+
+  var utils = {
+    dialog: dialog,
+    enterMultiDialog: enterMultiDialog
+  };
+
   function queue(target) {
     var array = Array.prototype;
 
@@ -1031,6 +1146,7 @@ var Deck = (function () {
   Deck.Card = _card;
   Deck.prefix = prefix;
   Deck.translate = translate;
+  Deck.Utils = utils;
 
   return Deck;
 })();
